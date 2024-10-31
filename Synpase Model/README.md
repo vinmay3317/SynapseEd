@@ -1,33 +1,79 @@
-Colab Model Development
-The model was initially developed in Google Colab. Below are the details:
+# SMART LEARNING SYSTEM - Model Development (Colab)
 
-Models and Dataset
-Hugging Face LLM (GPT-2):
+This README describes the process and components involved in developing the **Synapse** model within Google Colab. The Colab environment was used to train and prepare a custom model focused on educational query responses, integrating multiple components such as pre-trained language models, vector databases, RAG Methods and fine-tuning strategies.
 
-Parameters: 1.5 billion
-Dataset: lucadiliello/wikipedia_512_pretraining, a tokenized Wikipedia dataset used for pretraining, helping the model grasp general knowledge and context on various topics.
-Vector Database:
+---
 
-Tool: FAISS (Facebook AI Similarity Search)
-Purpose: Stores vector embeddings for fast, relevant data retrieval, ensuring that the model can quickly find relevant text based on user queries.
-Ollama TinyLlama (Synapse Model):
+## Project Objective
 
-Size: Lightweight, with optimized response speed for local systems.
-Purpose: Used as the primary LLM in the chatbot to manage answer generation effectively.
-RAG Model Integration
-BART-Large-CNN:
-Parameters: 406 million
-Purpose: Enables retrieval-augmented generation (RAG) to enhance response relevance by combining retrieved content with generated answers.
-Integration: RAG model pulls relevant data from FAISS to provide accurate, contextually rich answers based on user queries.
-Usage Guide
-Enter Your Query: Use the search bar to type in an academic question.
-Receive Answer and Video: The chatbot will respond with an answer in the middle section, while the left side displays either a summary or an extended response.
-View Relevant Videos: The right side shows related YouTube videos based on your query.
-Contribution
-Contributions are welcome if aligned with the project’s educational goals. Please ensure familiarity with Reflex, FAISS, and Flask before contributing.
+The primary goal of the model development was to create a chatbot focused on answering educational queries accurately and contextually. This was achieved by leveraging pre-trained language models and enhancing them with a **Retrieval-Augmented Generation (RAG)** setup to ensure responses are relevant, concise, and rich in information.
 
-License
-This project is licensed under a proprietary license, with permissions limited to educational and non-commercial research use.
+---
 
-Credits
-Project developed by Mr. Vinmay Tondle, Mr. Rushikesh Bobale, and Miss Priyanka Kapade. Special thanks for the integration of Synapse and the RAG model.
+## Key Components
+
+### 1. Language Models
+
+- **Hugging Face GPT-2 (Pre-trained)**
+  - **Parameters**: 1.5 billion
+  - **Purpose**: Used for tokenizing and encoding the dataset, allowing the chatbot to understand context and generate coherent responses.
+  - **Dataset**: Trained on the `lucadiliello/wikipedia_512_pretraining` dataset from Hugging Face, which is a collection of tokenized Wikipedia entries segmented into 512-token blocks.
+
+- **Ollama LLama2 (Synapse Model)**
+  - **Parameters**: Configurable, optimized for effective educational response generation.
+  - **Purpose**: LLaMA2 serves as the core language model in our chatbot, providing reliable and contextually rich answers while balancing memory usage and performance.
+    
+- **BART-Large-CNN (Facebook’s BART)**
+  - **Parameters**: 406 million
+  - **Role in RAG**: Serves as the Retrieval-Augmented Generation (RAG) model, which retrieves contextually relevant information and combines it with GPT-2 generated responses to ensure answer depth.
+  - **Usage**: Enhanced generation process through its pre-trained summarization capabilities, which allows for both summary and extended responses.
+
+### 2. Dataset
+
+- **`lucadiliello/wikipedia_512_pretraining`**:
+  - **Source**: Hugging Face
+  - **Size**: Wikipedia entries tokenized into 512-token segments.
+  - **Purpose**: Trains the model to understand general academic topics and provides a broad context for answering a variety of educational questions.
+
+### 3. Vector Database
+
+- **FAISS (Facebook AI Similarity Search)**
+  - **Role**: Manages and retrieves vectors for query-based searches, allowing quick and relevant retrieval of data embeddings related to the user’s question.
+  - **Storage**: Vector embeddings are stored in FAISS to ensure rapid and accurate access to relevant content when generating responses.
+
+---
+
+## Model Development Process
+
+### 1. Initial Dataset Preparation
+   - The `lucadiliello/wikipedia_512_pretraining` dataset from Hugging Face was used to pretrain the GPT-2 model, providing the chatbot with a base knowledge of general topics. Tokenization was handled by Hugging Face’s `transformers` library.
+
+### 2. RAG Model Integration
+   - **BART-Large-CNN** was integrated into a **Retrieval-Augmented Generation** setup. By combining BART with FAISS, the chatbot could retrieve relevant contextual data and feed it into the Llama2 model for answer generation.
+   - This process enables responses that are both coherent and contextually appropriate to educational topics.
+
+### 3. FAISS Indexing
+   - The vector embeddings created from the Wikipedia dataset were stored in a FAISS index, allowing for rapid retrieval based on user queries.
+   - **Pickle Storage**: Vector data and FAISS indices were serialized and stored in pickle files for easy loading and deployment.
+
+### 4. Model Testing and Evaluation
+   - Extensive testing was conducted in Colab, ensuring that the model generates relevant, accurate responses based on sample educational queries.
+   - The output was evaluated for accuracy, coherence, and educational relevance, with refinements applied as needed.
+
+---
+
+## Output and Usage Summary
+
+The Colab notebook provided a proof-of-concept implementation of the chatbot’s functionality, simulating real-world educational queries and generating precise answers using the combined capabilities of Llama and BART-Large-CNN in the RAG setup. FAISS indexing further enhanced the retrieval speed and relevance of the model’s responses.
+
+---
+
+## Deployment Notes
+
+Upon successful testing in Colab, the trained models, FAISS index, and custom logic were exported to be integrated within the Flask application in `app.py`. This setup enables the **SynapseEd** to function seamlessly in a web-based environment, ready for user interaction and real-time educational assistance.
+
+---
+
+## Summary
+
+The Colab model development provided a robust foundation for the **Synapse** chatbot, combining multiple technologies to create an efficient, educational response system that is optimized for fast, accurate answers.
