@@ -25,6 +25,8 @@ The **SynapseEd** uses a combination of RAG (Retrieval-Augmented Generation) and
 3. **Response Generation**: A Synapse model, combining **TinyLlama** or **Llama2**(based on system configuration) and **BART-Large-CNN**, generates an answer. If the response is short, it gets expanded; if it’s long, a summary is provided.
 4. **YouTube Video Display**: Relevant video content is fetched and shown in a separate container.
 
+---
+
 ### Technologies Used
 
 1. **Flask**: Backend framework for handling web requests and data processing.
@@ -33,3 +35,11 @@ The **SynapseEd** uses a combination of RAG (Retrieval-Augmented Generation) and
 4. **FAISS (Facebook AI Similarity Search)**: Manages and searches vectorized data for quick and relevant answer retrieval.
 6. **Frontend (HTML/CSS/JavaScript)**: Engaging web interface with a dynamic search bar, answer container, and YouTube video integration.
 
+---
+
+Feel free to explore, contribute, and make this Synapse Learning Platform project even more valuable for Students and other users..!
+
+### If you’re interested in learning more about this project or discussing potential collaborations, feel free to reach out at vinmaytondle@gmail.com (With the reference of project repository title in your message.).
+    
+## For more Info-
+  visit -: vinmaytondle.netlify.app
