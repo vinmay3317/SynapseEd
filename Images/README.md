@@ -1,3 +1,3 @@
-#SynapseEd->
+# SynapseEd->
 
-##This is how our project look like..!
+## This is how our project look like..!
